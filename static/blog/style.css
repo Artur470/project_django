@@ -37,6 +37,7 @@ h1{
     .card-img{
       position:relative;
       text-align:center;
+      word-break: break-all;
       background:#CB6074;
       img{
         @include transition(.3s);

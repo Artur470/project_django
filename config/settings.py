@@ -12,12 +12,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
+import dj_database_url
 load_dotenv()  # take environment variables from .env.
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+print(os.getenv("SECRET_KEY"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'blog'
+    'blog',
+    'register'
+
+
 ]
 
 MIDDLEWARE = [
@@ -73,17 +76,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# AUTH_USER_MODEL = 'register.User'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+        'default': dj_database_url.parse('postgresql://djangowebsite_eq6j_user:mnFOdGZl8FQN0RaTe6Tt8O3YuDuPzu4c@dpg-cuqsjulumphs73evu5pg-a.oregon-postgres.render.com/djangowebsite_eq6j')
+
+
 }
 
+AUTH_USER_MODEL = 'register.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
